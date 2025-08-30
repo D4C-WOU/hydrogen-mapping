@@ -9,44 +9,52 @@ import "./index.css"
 // Enhanced dataset for analysis with more realistic Indian locations
 const landData = [
   { 
-    name: "Gujarat - Kutch Solar Park", 
-    cost: 85, 
-    carbon: 15, 
+    name: "Singrauli Green Zone - MP", 
+    cost: 65, 
+    carbon: 6, 
     location: "Kutch, Gujarat",
-    renewable: "Solar",
-    logistics: "Excellent port access"
+    renewable: "Solar + Wind Hybrid",
+    logistics: "Coal belt transition with existing infrastructure"
   },
   { 
-    name: "Rajasthan - Jaisalmer Wind Farm", 
-    cost: 92, 
+    name: "Rewa Ultra Mega Solar - MP", 
+    cost: 68, 
+    carbon: 4, 
+    location: "Rewa, MP",
+    renewable: "Solar",
+    logistics: "Existing solar infrastructure"
+  },
+  { 
+    name: "Bhavnagar Green Port - Gujarat", 
+    cost: 72, 
+    carbon: 7, 
+    location: "Bhavnagar, Gujarat",
+    renewable: "Solar + Wind",
+    logistics: "Strategic port location for export"
+  },
+  { 
+    name: "Kutch Solar Park - Gujarat", 
+    cost: 75, 
+    carbon: 8, 
+    location: "Kutch, Gujarat",
+    renewable: "Solar",
+    logistics: "Remote but excellent solar potential"
+  },
+  { 
+    name: "Jaisalmer Wind Farm - Rajasthan", 
+    cost: 82, 
     carbon: 12, 
     location: "Jaisalmer, Rajasthan",
     renewable: "Wind",
     logistics: "Good rail connectivity"
   },
   { 
-    name: "Ladakh - High Altitude Solar", 
-    cost: 110, 
-    carbon: 8, 
-    location: "Leh, Ladakh",
-    renewable: "Solar",
-    logistics: "Remote location"
-  },
-  { 
-    name: "Tamil Nadu - Offshore Wind", 
+    name: "Tamil Nadu Offshore Wind", 
     cost: 95, 
     carbon: 10, 
     location: "Tuticorin, Tamil Nadu",
     renewable: "Offshore Wind",
     logistics: "Excellent port facilities"
-  },
-  { 
-    name: "Andhra Pradesh - Solar Hub", 
-    cost: 78, 
-    carbon: 18, 
-    location: "Anantapur, AP",
-    renewable: "Solar",
-    logistics: "Good highway access"
   },
 ]
 
@@ -58,7 +66,7 @@ function Dashboard() {
     // Enhanced analysis with more detailed results
     const leastCost = landData.reduce((a, b) => (a.cost < b.cost ? a : b))
     const leastCarbon = landData.reduce((a, b) => (a.carbon < b.carbon ? a : b))
-    const bestLogistics = landData.filter(land => land.logistics.includes("Excellent"))
+    const bestLogistics = landData.filter(land => land.logistics.includes("Excellent") || land.logistics.includes("Strategic"))
     
     const avgCost = (landData.reduce((sum, land) => sum + land.cost, 0) / landData.length).toFixed(1)
     const avgCarbon = (landData.reduce((sum, land) => sum + land.carbon, 0) / landData.length).toFixed(1)

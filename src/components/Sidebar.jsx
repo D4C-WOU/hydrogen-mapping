@@ -11,11 +11,42 @@ export default function Sidebar({ setView, runAnalysis, analysisResult }) {
   }
 
   const viewOptions = [
-    { id: "all", label: "🗺️ All Sites", description: "Complete hydrogen infrastructure overview" },
-    { id: "plants", label: "🏭 Existing Plants", description: "Operational hydrogen facilities" },
-    { id: "potential", label: "🌱 Potential Sites", description: "Future development locations" },
-    { id: "research", label: "🔬 Research Centers", description: "R&D and innovation hubs" },
-    { id: "industrial", label: "🏗️ Industrial Clusters", description: "Manufacturing and export zones" },
+    { 
+      id: "all", 
+      icon: "🗺️", 
+      label: "All Sites", 
+      description: "Complete hydrogen infrastructure overview" 
+    },
+    { 
+      id: "plants", 
+      icon: "🏭", 
+      label: "Existing Plants", 
+      description: "Operational hydrogen facilities" 
+    },
+    { 
+      id: "potential", 
+      icon: "🌱", 
+      label: "Potential Sites", 
+      description: "Future development locations" 
+    },
+    { 
+      id: "optimal", 
+      icon: "⭐", 
+      label: "Optimal Locations", 
+      description: "Best cost & carbon efficiency sites" 
+    },
+    { 
+      id: "research", 
+      icon: "🔬", 
+      label: "Research Centers", 
+      description: "R&D and innovation hubs" 
+    },
+    { 
+      id: "industrial", 
+      icon: "🏗️", 
+      label: "Industrial Clusters", 
+      description: "Manufacturing and export zones" 
+    },
   ]
 
   const stats = [
@@ -29,7 +60,7 @@ export default function Sidebar({ setView, runAnalysis, analysisResult }) {
     <aside className="sidebar slide-in-right">
       <div className="sidebar-header">
         <h2 className="sidebar-title">⚡ Hydrogen Dashboard</h2>
-        <p className="sidebar-subtitle">National Green Hydrogen Mission - Real-time Infrastructure Mapping</p>
+        <p className="sidebar-subtitle">National Green Hydrogen Mission - Real-time Infrastructure Mapping & Analysis</p>
       </div>
 
       {/* Search and Filters */}
@@ -47,12 +78,79 @@ export default function Sidebar({ setView, runAnalysis, analysisResult }) {
             {viewOptions.map((option) => (
               <button
                 key={option.id}
-                className={`button ${activeView === option.id ? 'button-default' : 'button-secondary'} button-full`}
+                className={`view-button ${activeView === option.id ? 'active' : ''}`}
                 onClick={() => handleViewChange(option.id)}
               >
-                {option.label}
+                <span className="view-button-icon" style={{ fontSize: '1.25rem', minWidth: '1.5rem' }}>
+                  {option.icon}
+                </span>
+                <div className="view-button-content">
+                  <span className="view-button-label">{option.label}</span>
+                  <span className="view-button-description">{option.description}</span>
+                </div>
               </button>
             ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Legend */}
+      <div className="card">
+        <h3 className="card-title">🎯 Map Legend</h3>
+        <div className="card-content">
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-md)' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-md)' }}>
+              <div style={{ 
+                width: '16px', 
+                height: '16px', 
+                background: '#ef4444', 
+                borderRadius: '50%',
+                border: '2px solid white',
+                boxShadow: '0 2px 4px rgba(0,0,0,0.3)'
+              }}></div>
+              <span style={{ fontSize: '0.875rem', color: 'var(--text-secondary)' }}>
+                Existing Hydrogen Plants
+              </span>
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-md)' }}>
+              <div style={{ 
+                width: '16px', 
+                height: '16px', 
+                background: '#22c55e', 
+                borderRadius: '50%',
+                border: '2px solid white',
+                boxShadow: '0 2px 4px rgba(0,0,0,0.3)'
+              }}></div>
+              <span style={{ fontSize: '0.875rem', color: 'var(--text-secondary)' }}>
+                Potential Development Sites
+              </span>
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-md)' }}>
+              <div style={{ 
+                width: '16px', 
+                height: '16px', 
+                background: '#8b5cf6', 
+                borderRadius: '50%',
+                border: '2px solid white',
+                boxShadow: '0 2px 4px rgba(0,0,0,0.3)'
+              }}></div>
+              <span style={{ fontSize: '0.875rem', color: 'var(--text-secondary)' }}>
+                Optimal Locations (Cost & Carbon Efficient)
+              </span>
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-md)' }}>
+              <div style={{ 
+                width: '16px', 
+                height: '16px', 
+                background: '#3b82f6', 
+                borderRadius: '50%',
+                border: '2px solid white',
+                boxShadow: '0 2px 4px rgba(0,0,0,0.3)'
+              }}></div>
+              <span style={{ fontSize: '0.875rem', color: 'var(--text-secondary)' }}>
+                Research & Development Centers
+              </span>
+            </div>
           </div>
         </div>
       </div>
@@ -84,17 +182,22 @@ export default function Sidebar({ setView, runAnalysis, analysisResult }) {
         <h3 className="card-title">🧮 Land Analysis</h3>
         <div className="card-content card-content-gap">
           <p className="card-description">
-            Analyze optimal locations for hydrogen infrastructure based on cost, carbon footprint, and logistics.
+            Analyze optimal locations for hydrogen infrastructure based on cost efficiency, carbon footprint, and logistics accessibility.
           </p>
           <button 
             className="button button-default button-full hover-lift"
             onClick={runAnalysis}
           >
-            🚀 Run Analysis
+            🚀 Run Comprehensive Analysis
           </button>
           {analysisResult && (
             <div className="analysis-result">
-              <h4 style={{ color: 'var(--saffron)', marginBottom: 'var(--space-sm)', fontSize: '0.875rem', fontWeight: '600' }}>
+              <h4 style={{ 
+                color: 'var(--mint-primary)', 
+                marginBottom: 'var(--space-sm)', 
+                fontSize: '0.875rem', 
+                fontWeight: '600' 
+              }}>
                 Analysis Results:
               </h4>
               <pre style={{ 
@@ -105,7 +208,8 @@ export default function Sidebar({ setView, runAnalysis, analysisResult }) {
                 lineHeight: '1.4',
                 color: 'var(--text-secondary)',
                 whiteSpace: 'pre-wrap',
-                border: '1px solid var(--border-primary)'
+                border: '1px solid var(--border-primary)',
+                fontFamily: 'Inter, monospace'
               }}>
                 {analysisResult}
               </pre>

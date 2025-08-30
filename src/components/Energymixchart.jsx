@@ -6,25 +6,25 @@ export default function EnergyMixChart() {
       id: "Solar", 
       label: "Solar Power",
       value: 35, 
-      color: "#f59e0b" 
+      color: "#A1D1B1" 
     },
     { 
       id: "Wind", 
       label: "Wind Power",
       value: 28, 
-      color: "#22c55e" 
+      color: "#8BC49C" 
     },
     { 
       id: "Hydro", 
       label: "Hydroelectric",
       value: 22, 
-      color: "#3b82f6" 
+      color: "#6ee7b7" 
     },
     { 
       id: "Hydrogen", 
       label: "Green Hydrogen",
       value: 15, 
-      color: "#ff9933" 
+      color: "#1C2529" 
     },
   ]
 
@@ -48,17 +48,17 @@ export default function EnergyMixChart() {
           background: 'transparent',
           text: {
             fontSize: 12,
-            fill: '#cbd5e1',
+            fill: '#A1D1B1',
             fontWeight: 600
           },
           tooltip: {
             container: {
-              background: 'rgba(37, 43, 61, 0.95)',
+              background: 'rgba(28, 37, 41, 0.95)',
               color: '#ffffff',
               fontSize: '14px',
               borderRadius: '8px',
               boxShadow: '0 8px 25px rgba(0, 0, 0, 0.3)',
-              border: '1px solid rgba(255, 255, 255, 0.1)',
+              border: '1px solid rgba(161, 209, 177, 0.2)',
               backdropFilter: 'blur(20px)'
             }
           }
@@ -76,7 +76,7 @@ export default function EnergyMixChart() {
             itemsSpacing: 0,
             itemWidth: 60,
             itemHeight: 18,
-            itemTextColor: '#cbd5e1',
+            itemTextColor: '#A1D1B1',
             itemDirection: 'left-to-right',
             itemOpacity: 1,
             symbolSize: 12,
@@ -85,7 +85,7 @@ export default function EnergyMixChart() {
               {
                 on: 'hover',
                 style: {
-                  itemTextColor: '#ffffff'
+                  itemTextColor: '#B8E0C4'
                 }
               }
             ]
