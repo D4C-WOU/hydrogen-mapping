@@ -1,4 +1,4 @@
-import EnergyMixChart from "./EnergyMixchart"
+import EnergyMixChart from "./Energymixchart"
 
 export default function Sidebar() {
   return (
