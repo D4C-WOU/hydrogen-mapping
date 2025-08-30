@@ -1,0 +1,29 @@
+[
+  {
+    "id": 1,
+    "name": "Green Hydrogen Plant",
+    "city": "Berlin",
+    "country": "Germany",
+    "capacity": "50 MW",
+    "lat": 52.52,
+    "lng": 13.405
+  },
+  {
+    "id": 2,
+    "name": "Blue Hydrogen Facility",
+    "city": "Rotterdam",
+    "country": "Netherlands",
+    "capacity": "100 MW",
+    "lat": 51.9225,
+    "lng": 4.47917
+  },
+  {
+    "id": 3,
+    "name": "Solar-H2 Pilot",
+    "city": "Madrid",
+    "country": "Spain",
+    "capacity": "25 MW",
+    "lat": 40.4168,
+    "lng": -3.7038
+  }
+]
