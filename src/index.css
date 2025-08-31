@@ -1249,6 +1249,23 @@ body {
   background: linear-gradient(135deg, var(--mint-light), var(--mint-primary));
 }
 
+/* Analysis complete notice */
+.analysis-complete-notice {
+  margin-top: var(--space-lg);
+  padding: var(--space-md);
+  background: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  border-radius: var(--radius-md);
+  text-align: center;
+}
+
+.analysis-notice-text {
+  font-size: 0.875rem;
+  color: #22c55e;
+  font-weight: 600;
+  margin: 0;
+}
+
 /* Enhanced popup styling for better readability */
 .leaflet-popup-content-wrapper {
   background: rgba(42, 52, 57, 0.98) !important;
