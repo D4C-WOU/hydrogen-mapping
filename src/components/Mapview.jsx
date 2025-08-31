@@ -45,7 +45,7 @@ const createCustomIcon = (color, symbol = "H₂", size = [40, 40]) => {
 
 // Distinct icons for different site types
 const existingIcon = createCustomIcon('#ef4444', '🏭')  // Red for existing plants
-const predictionIcon = createCustomIcon('#3b82f6', '⭐')   // Blue for predicted optimal sites
+const predictionIcon = createCustomIcon('#3b82f6', '🔵')   // Blue for predicted optimal sites
 
 export default function Mapview({ view, selectedSite, onSiteSelect }) {
   const [mapLoading, setMapLoading] = useState(true)
