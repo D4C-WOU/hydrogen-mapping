@@ -516,12 +516,13 @@ body {
   display: flex;
   flex-direction: column;
   gap: var(--space-sm);
+  align-items: center;
 }
 
 .view-button {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   gap: var(--space-md);
   padding: var(--space-lg);
   background: var(--bg-glass);
@@ -532,9 +533,10 @@ body {
   font-weight: 600;
   cursor: pointer;
   transition: all var(--transition-normal);
-  text-align: left;
+  text-align: center;
   width: 100%;
-  min-height: 3.5rem;
+  min-height: 4rem;
+  flex-direction: column;
 }
 
 .view-button:hover {
@@ -554,20 +556,28 @@ body {
 .view-button-content {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   gap: var(--space-xs);
   flex: 1;
+  text-align: center;
 }
 
 .view-button-label {
   font-weight: 600;
-  font-size: 0.875rem;
+  font-size: 0.95rem;
 }
 
 .view-button-description {
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   opacity: 0.8;
   font-weight: 400;
+  text-align: center;
+  line-height: 1.3;
+}
+
+.view-button-icon {
+  font-size: 1.5rem !important;
+  margin-bottom: var(--space-xs);
 }
 
 /* Enhanced Inputs */
@@ -991,6 +1001,33 @@ body {
   background: linear-gradient(135deg, var(--mint-light), var(--mint-primary));
 }
 
+/* Enhanced popup styling for better readability */
+.leaflet-popup-content-wrapper {
+  background: rgba(42, 52, 57, 0.98) !important;
+  border: 1px solid var(--border-accent) !important;
+  border-radius: var(--radius-lg) !important;
+  box-shadow: var(--shadow-xl) !important;
+  backdrop-filter: blur(20px) !important;
+}
+
+.leaflet-popup-content {
+  color: var(--text-primary) !important;
+  font-weight: 500 !important;
+  margin: var(--space-lg) !important;
+  max-width: 350px !important;
+}
+
+.leaflet-popup-tip {
+  background: rgba(42, 52, 57, 0.98) !important;
+  border: 1px solid var(--border-accent) !important;
+}
+
+/* Custom marker hover effects */
+.custom-marker:hover {
+  transform: scale(1.1) !important;
+  z-index: 1000 !important;
+}
+
 /* Enhanced responsive design */
 @media (max-width: 1200px) {
   .sidebar-container {
@@ -1093,6 +1130,11 @@ body {
   .form-title {
     font-size: 1.75rem;
   }
+  
+  .view-button {
+    min-height: 3.5rem;
+    padding: var(--space-md);
+  }
 }
 
 @media (max-width: 480px) {
@@ -1135,6 +1177,23 @@ body {
   
   .chart-container {
     height: 200px;
+  }
+  
+  .view-button {
+    min-height: 3rem;
+    padding: var(--space-sm) var(--space-md);
+  }
+  
+  .view-button-icon {
+    font-size: 1.25rem !important;
+  }
+  
+  .view-button-label {
+    font-size: 0.85rem;
+  }
+  
+  .view-button-description {
+    font-size: 0.7rem;
   }
   
   .auth-container {

@@ -3,7 +3,7 @@ import EnergyMixChart from "./Energymixchart"
 
 export default function Sidebar({ setView, runAnalysis, analysisResult }) {
   const [searchTerm, setSearchTerm] = useState("")
-  const [activeView, setActiveView] = useState("all")
+  const [activeView, setActiveView] = useState("existing")
 
   const handleViewChange = (viewType) => {
     setActiveView(viewType)
@@ -12,40 +12,16 @@ export default function Sidebar({ setView, runAnalysis, analysisResult }) {
 
   const viewOptions = [
     { 
-      id: "all", 
-      icon: "🗺️", 
-      label: "All Sites", 
-      description: "Complete hydrogen infrastructure overview" 
-    },
-    { 
-      id: "plants", 
+      id: "existing", 
       icon: "🏭", 
-      label: "Existing Plants", 
+      label: "Existing Factories", 
       description: "Operational hydrogen facilities" 
     },
     { 
-      id: "potential", 
-      icon: "🌱", 
-      label: "Potential Sites", 
-      description: "Future development locations" 
-    },
-    { 
-      id: "optimal", 
+      id: "predictions", 
       icon: "⭐", 
-      label: "Optimal Locations", 
+      label: "Predictions", 
       description: "Best cost & carbon efficiency sites" 
-    },
-    { 
-      id: "research", 
-      icon: "🔬", 
-      label: "Research Centers", 
-      description: "R&D and innovation hubs" 
-    },
-    { 
-      id: "industrial", 
-      icon: "🏗️", 
-      label: "Industrial Clusters", 
-      description: "Manufacturing and export zones" 
     },
   ]
 
@@ -109,20 +85,7 @@ export default function Sidebar({ setView, runAnalysis, analysisResult }) {
                 boxShadow: '0 2px 4px rgba(0,0,0,0.3)'
               }}></div>
               <span style={{ fontSize: '0.875rem', color: 'var(--text-secondary)' }}>
-                Existing Hydrogen Plants
-              </span>
-            </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-md)' }}>
-              <div style={{ 
-                width: '16px', 
-                height: '16px', 
-                background: '#22c55e', 
-                borderRadius: '50%',
-                border: '2px solid white',
-                boxShadow: '0 2px 4px rgba(0,0,0,0.3)'
-              }}></div>
-              <span style={{ fontSize: '0.875rem', color: 'var(--text-secondary)' }}>
-                Potential Development Sites
+                Existing Hydrogen Factories
               </span>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-md)' }}>
@@ -135,20 +98,7 @@ export default function Sidebar({ setView, runAnalysis, analysisResult }) {
                 boxShadow: '0 2px 4px rgba(0,0,0,0.3)'
               }}></div>
               <span style={{ fontSize: '0.875rem', color: 'var(--text-secondary)' }}>
-                Optimal Locations (Cost & Carbon Efficient)
-              </span>
-            </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-md)' }}>
-              <div style={{ 
-                width: '16px', 
-                height: '16px', 
-                background: '#3b82f6', 
-                borderRadius: '50%',
-                border: '2px solid white',
-                boxShadow: '0 2px 4px rgba(0,0,0,0.3)'
-              }}></div>
-              <span style={{ fontSize: '0.875rem', color: 'var(--text-secondary)' }}>
-                Research & Development Centers
+                Predicted Optimal Sites (Low Cost/Carbon)
               </span>
             </div>
           </div>
@@ -179,16 +129,16 @@ export default function Sidebar({ setView, runAnalysis, analysisResult }) {
 
       {/* Analysis Section */}
       <div className="card">
-        <h3 className="card-title">🧮 Land Analysis</h3>
+        <h3 className="card-title">🧮 Site Analysis</h3>
         <div className="card-content card-content-gap">
           <p className="card-description">
-            Analyze optimal locations for hydrogen infrastructure based on cost efficiency, carbon footprint, and logistics accessibility.
+            Comprehensive analysis of existing facilities and predicted optimal locations for hydrogen infrastructure development.
           </p>
           <button 
             className="button button-default button-full hover-lift"
             onClick={runAnalysis}
           >
-            🚀 Run Comprehensive Analysis
+            🚀 Generate Site Analysis
           </button>
           {analysisResult && (
             <div className="analysis-result">
@@ -215,22 +165,6 @@ export default function Sidebar({ setView, runAnalysis, analysisResult }) {
               </pre>
             </div>
           )}
-        </div>
-      </div>
-
-      {/* Quick Actions */}
-      <div className="card">
-        <h3 className="card-title">⚡ Quick Actions</h3>
-        <div className="card-content card-content-gap">
-          <button className="button button-secondary button-full hover-lift">
-            📈 View Trends
-          </button>
-          <button className="button button-secondary button-full hover-lift">
-            📋 Generate Report
-          </button>
-          <button className="button button-secondary button-full hover-lift">
-            🌐 Export Data
-          </button>
         </div>
       </div>
     </aside>
