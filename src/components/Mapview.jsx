@@ -70,6 +70,9 @@ export default function Mapview({ view, selectedSite, onSiteSelect }) {
       case "predictions":
         setActiveMarkers(optimalSites)
         break
+      case "both":
+        setActiveMarkers([...existingPlants, ...optimalSites])
+        break
       default:
         setActiveMarkers([...existingPlants, ...optimalSites])
     }
