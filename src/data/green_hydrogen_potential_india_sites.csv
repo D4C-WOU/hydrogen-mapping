@@ -1,0 +1,13 @@
+Site,State,Latitude,Longitude,Rationale,Sources
+Kutch (Gujarat),Gujarat,23.733732,69.859741,"High wind+solar resource, coastal port access, industrial clusters (exports).",CEEW; NewClimate; latlong.net (coords)
+Hazira / Surat (Gujarat),Gujarat,21.132202,72.75294,"Major industrial cluster, port & pipeline access, proximity to refineries and steel plants.",RMI; NewClimate; Wikipedia/Hazira coords
+Kakinada (East Godavari),Andhra Pradesh,16.989065,82.247467,"Coastal port, proposed ammonia/fertilizer demand, nearby renewables.",NewClimate; IH2A; latlong.net (coords)
+Kakinada-Krishnapatnam Corridor,Andhra Pradesh,15.9,80.2,Port corridor with heavy industry and export potential (approx centroid).,RMI; NewClimate (corridor)
+Visakhapatnam / Vizag,Andhra Pradesh,17.686815,83.218483,"Major port, refineries, steel demand, good RE access nearby.",RMI; NewClimate; latlong.net (coords)
+Kochi (Cochin),Kerala,9.931233,76.267303,"Port, export potential, industrial clusters for ammonia/chemicals.",NewClimate; RMI; Wikipedia coords
+Tuticorin (Thoothukudi),Tamil Nadu,8.764166,78.134834,"Deep-water port, industrial demand, access to wind + solar resources in TN.",CEEW; NewClimate; latlong.net (coords)
+Ratnagiri / Ratnagiri coast,Maharashtra,16.994444,73.300003,"Coastal port potential, nearby industrial clusters and export logistics.",NewClimate; CEEW; latlong.net (coords)
+Mangaluru (Mangalore),Karnataka,12.915605,74.855965,"Port, industrial demand (fertilizer/refinery), good RE potential nearby.",RMI; CEEW; latlong.net (coords)
+Paradeep (Paradip),Odisha,20.316551,86.611366,"Major port, steel & fertilizer demand, proximity to industrial clusters in Odisha.",RMI; NewClimate; latlong.net (coords)
+Vijaipur (Guna),Madhya Pradesh,24.484,77.157,"Existing GAIL green hydrogen pilot, fertilizer cluster demand inland.",GAIL; Wikipedia (coords)
+Barmer / Jaisalmer (Thar Desert),Rajasthan,26.914,71.475,"Very high solar resource, large contiguous land availability for PV-electrolyser plants.",CEEW; Global Solar Atlas; approximate centroid coords
