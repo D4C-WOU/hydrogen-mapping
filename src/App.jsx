@@ -11,6 +11,7 @@ import "./index.css"
 function Dashboard() {
   const [view, setView] = useState("existing")
   const [analysisResult, setAnalysisResult] = useState("")
+  const [selectedSite, setSelectedSite] = useState(null)
 
   const runAnalysis = () => {
     // Enhanced analysis with existing and predicted sites
@@ -69,10 +70,15 @@ function Dashboard() {
             setView={setView}
             runAnalysis={runAnalysis}
             analysisResult={analysisResult}
+            onSiteSelect={setSelectedSite}
           />
         </div>
         <div className="map-container">
-          <Mapview view={view} />
+          <Mapview 
+            view={view} 
+            selectedSite={selectedSite}
+            onSiteSelect={setSelectedSite}
+          />
         </div>
       </div>
     </div>

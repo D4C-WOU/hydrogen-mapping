@@ -17,12 +17,12 @@ export default function Header({ analysisResult }) {
     // Header
     doc.setFontSize(20)
     doc.setFont(undefined, 'bold')
-    doc.text("India Green Hydrogen Infrastructure Detailed Report", 20, 25)
+    doc.text("Green Hydrogen Mapping - Infrastructure Report", 20, 25)
     
     // Subtitle
     doc.setFontSize(12)
     doc.setFont(undefined, 'normal')
-    doc.text("National Green Hydrogen Mission - Comprehensive Infrastructure Analysis", 20, 35)
+    doc.text("National Green Hydrogen Mission - Site Analysis Report", 20, 35)
     
     // Date
     const currentDate = new Date().toLocaleDateString('en-IN')
@@ -98,7 +98,7 @@ for future development based on cost efficiency and carbon emission analysis.`
       <div className="header-logo">
         <span className="header-logo-emoji">🇮🇳</span>
         <div className="header-text">
-          <h1 className="header-title">India Hydrogen Dashboard</h1>
+          <h1 className="header-title">Green Hydrogen Mapping</h1>
           <span className="header-subtitle">National Green Hydrogen Mission</span>
         </div>
       </div>

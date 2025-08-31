@@ -1,55 +1,67 @@
 import { useState } from "react"
-import EnergyMixChart from "./Energymixchart"
+import { existingPlants, optimalSites } from "../data/hydrogenData"
 
-export default function Sidebar({ setView, runAnalysis, analysisResult }) {
-  const [searchTerm, setSearchTerm] = useState("")
+export default function Sidebar({ setView, runAnalysis, analysisResult, onSiteSelect }) {
   const [activeView, setActiveView] = useState("existing")
+  const [analysisFilter, setAnalysisFilter] = useState("all")
+  const [sortedSites, setSortedSites] = useState([])
 
   const handleViewChange = (viewType) => {
     setActiveView(viewType)
     setView(viewType)
   }
 
+  const handleAnalysisFilterChange = (filter) => {
+    setAnalysisFilter(filter)
+    generateSortedList(filter)
+  }
+
+  const generateSortedList = (filter) => {
+    let sites = [...optimalSites]
+    
+    switch (filter) {
+      case "cost":
+        sites.sort((a, b) => a.cost - b.cost)
+        break
+      case "carbon":
+        sites.sort((a, b) => a.carbon - b.carbon)
+        break
+      case "all":
+      default:
+        // Sort by combined efficiency (lower cost + carbon = better)
+        sites.sort((a, b) => (a.cost + a.carbon) - (b.cost + b.carbon))
+        break
+    }
+    
+    setSortedSites(sites)
+  }
+
   const viewOptions = [
     { 
       id: "existing", 
       icon: "🏭", 
-      label: "Existing Factories", 
+      label: "Established Sites", 
       description: "Operational hydrogen facilities" 
     },
     { 
       id: "predictions", 
       icon: "⭐", 
-      label: "Predictions", 
-      description: "Best cost & carbon efficiency sites" 
+      label: "Possible Sites", 
+      description: "Predicted optimal locations" 
     },
-  ]
-
-  const stats = [
-    { label: "Active Plants", value: "15", unit: "facilities" },
-    { label: "Total Capacity", value: "8.2", unit: "MTPA" },
-    { label: "Potential Sites", value: "25", unit: "locations" },
-    { label: "Investment", value: "₹2.4L", unit: "crores" },
   ]
 
   return (
     <aside className="sidebar slide-in-right">
       <div className="sidebar-header">
-        <h2 className="sidebar-title">⚡ Hydrogen Dashboard</h2>
-        <p className="sidebar-subtitle">National Green Hydrogen Mission - Real-time Infrastructure Mapping & Analysis</p>
+        <h2 className="sidebar-title">⚡ Control Panel</h2>
+        <p className="sidebar-subtitle">Navigate and analyze India's green hydrogen infrastructure</p>
       </div>
 
-      {/* Search and Filters */}
+      {/* View Selection Buttons */}
       <div className="card">
-        <h3 className="card-title">🔍 Search & Filter</h3>
-        <div className="card-content card-content-gap">
-          <input 
-            className="input" 
-            placeholder="Search by city, state, or facility name..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-          
+        <h3 className="card-title">🗺️ Map Views</h3>
+        <div className="card-content">
           <div className="view-buttons">
             {viewOptions.map((option) => (
               <button
@@ -57,7 +69,7 @@ export default function Sidebar({ setView, runAnalysis, analysisResult }) {
                 className={`view-button ${activeView === option.id ? 'active' : ''}`}
                 onClick={() => handleViewChange(option.id)}
               >
-                <span className="view-button-icon" style={{ fontSize: '1.25rem', minWidth: '1.5rem' }}>
+                <span className="view-button-icon">
                   {option.icon}
                 </span>
                 <div className="view-button-content">
@@ -70,97 +82,71 @@ export default function Sidebar({ setView, runAnalysis, analysisResult }) {
         </div>
       </div>
 
-      {/* Legend */}
+      {/* Analysis Section with Filter */}
       <div className="card">
-        <h3 className="card-title">🎯 Map Legend</h3>
-        <div className="card-content">
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-md)' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-md)' }}>
-              <div style={{ 
-                width: '16px', 
-                height: '16px', 
-                background: '#ef4444', 
-                borderRadius: '50%',
-                border: '2px solid white',
-                boxShadow: '0 2px 4px rgba(0,0,0,0.3)'
-              }}></div>
-              <span style={{ fontSize: '0.875rem', color: 'var(--text-secondary)' }}>
-                Existing Hydrogen Factories
-              </span>
-            </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-md)' }}>
-              <div style={{ 
-                width: '16px', 
-                height: '16px', 
-                background: '#8b5cf6', 
-                borderRadius: '50%',
-                border: '2px solid white',
-                boxShadow: '0 2px 4px rgba(0,0,0,0.3)'
-              }}></div>
-              <span style={{ fontSize: '0.875rem', color: 'var(--text-secondary)' }}>
-                Predicted Optimal Sites (Low Cost/Carbon)
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Statistics Overview */}
-      <div className="card">
-        <h3 className="card-title">📊 Infrastructure Stats</h3>
-        <div className="stats-grid">
-          {stats.map((stat, index) => (
-            <div key={index} className="stat-card hover-lift">
-              <div className="stat-value">{stat.value}</div>
-              <div className="stat-label">{stat.label}</div>
-              <div className="stat-unit">{stat.unit}</div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Energy Mix Chart */}
-      <div className="card">
-        <h3 className="card-title">🔋 Energy Mix Analysis</h3>
-        <div className="chart-container">
-          <EnergyMixChart />
-        </div>
-      </div>
-
-      {/* Analysis Section */}
-      <div className="card">
-        <h3 className="card-title">🧮 Site Analysis</h3>
+        <h3 className="card-title">🧮 Analysis</h3>
         <div className="card-content card-content-gap">
-          <p className="card-description">
-            Comprehensive analysis of existing facilities and predicted optimal locations for hydrogen infrastructure development.
-          </p>
+          <div className="analysis-filter-section">
+            <label className="filter-label">Analysis Filter:</label>
+            <select 
+              className="analysis-dropdown"
+              value={analysisFilter}
+              onChange={(e) => handleAnalysisFilterChange(e.target.value)}
+            >
+              <option value="all">All (Combined Efficiency)</option>
+              <option value="cost">Least Cost Sites</option>
+              <option value="carbon">Least Carbon Emission</option>
+            </select>
+          </div>
+          
           <button 
             className="button button-default button-full hover-lift"
-            onClick={runAnalysis}
+            onClick={() => {
+              runAnalysis()
+              generateSortedList(analysisFilter)
+            }}
           >
-            🚀 Generate Site Analysis
+            🚀 Generate Analysis
           </button>
+
+          {sortedSites.length > 0 && (
+            <div className="sorted-sites-section">
+              <h4 className="sorted-sites-title">
+                📊 Ranked Sites ({analysisFilter === 'all' ? 'Combined Efficiency' : 
+                  analysisFilter === 'cost' ? 'By Cost' : 'By Carbon Emission'})
+              </h4>
+              <div className="sorted-sites-list">
+                {sortedSites.slice(0, 5).map((site, index) => (
+                  <div 
+                    key={site.id} 
+                    className="sorted-site-item hover-lift"
+                    onClick={() => onSiteSelect && onSiteSelect(site)}
+                  >
+                    <div className="site-rank">#{index + 1}</div>
+                    <div className="site-info">
+                      <div className="site-name">{site.name}</div>
+                      <div className="site-metrics">
+                        <span className="metric">Cost: {site.cost}/100</span>
+                        <span className="metric">Carbon: {site.carbon}/100</span>
+                      </div>
+                    </div>
+                    <div className="efficiency-badge">
+                      {analysisFilter === 'cost' ? `${site.cost}/100` :
+                       analysisFilter === 'carbon' ? `${site.carbon}/100` :
+                       `${site.cost + site.carbon}/200`}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
           {analysisResult && (
             <div className="analysis-result">
-              <h4 style={{ 
-                color: 'var(--mint-primary)', 
-                marginBottom: 'var(--space-sm)', 
-                fontSize: '0.875rem', 
-                fontWeight: '600' 
-              }}>
+              <h4 className="analysis-result-title">
                 Analysis Results:
               </h4>
-              <pre style={{ 
-                background: 'var(--bg-glass)', 
-                padding: 'var(--space-md)', 
-                borderRadius: 'var(--radius-md)',
-                fontSize: '0.8rem',
-                lineHeight: '1.4',
-                color: 'var(--text-secondary)',
-                whiteSpace: 'pre-wrap',
-                border: '1px solid var(--border-primary)',
-                fontFamily: 'Inter, monospace'
-              }}>
+              <pre className="analysis-result-content">
                 {analysisResult}
               </pre>
             </div>
