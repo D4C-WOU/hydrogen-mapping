@@ -570,7 +570,7 @@ body {
 .view-button-description {
   font-size: 0.8rem;
   opacity: 0.8;
-
+}
 /* Enhanced Map View Toggle Button */
 .map-view-toggle {
   display: flex;
