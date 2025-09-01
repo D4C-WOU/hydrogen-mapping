@@ -168,109 +168,24 @@ export default function Mapview({ view, selectedSite, onSiteSelect }) {
               }}
             >
               <Popup className="custom-popup" maxWidth={350}>
-                <div style={{ minWidth: '280px', fontFamily: 'Inter, sans-serif' }}>
+                <div style={{ fontFamily: 'Inter, sans-serif' }}>
                   <h3 style={{ 
                     color: getMarkerColor(site.type), 
-                    marginBottom: '12px',
-                    fontSize: '1.1rem',
-                    fontWeight: '700',
-                    borderBottom: `2px solid ${getMarkerColor(site.type)}`,
-                    paddingBottom: '8px'
+                    marginBottom: '8px',
+                    fontSize: '1rem',
+                    fontWeight: '700'
                   }}>
                     {site.name}
                   </h3>
-                  
-                  {getEfficiencyBadge(site) && (
-                    <div style={{
-                      background: 'rgba(139, 92, 246, 0.1)',
-                      padding: '8px 12px',
-                      borderRadius: '8px',
-                      marginBottom: '12px',
-                      border: '1px solid rgba(139, 92, 246, 0.3)',
-                      fontSize: '0.875rem',
-                      fontWeight: '600',
-                      color: '#8b5cf6'
-                    }}>
-                      {getEfficiencyBadge(site)}
-                    </div>
-                  )}
-                  
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                    <p style={{ marginBottom: '4px', fontWeight: '600', fontSize: '0.9rem' }}>
-                      📍 <span style={{ color: '#A1D1B1' }}>Location: {site.city}</span>
-                    </p>
-                    <p style={{ marginBottom: '4px', fontSize: '0.9rem' }}>
-                      🌐 <span style={{ color: '#A1D1B1', fontWeight: '600' }}>Coordinates: {site.coordinates}</span>
-                    </p>
-                    <p style={{ marginBottom: '4px', fontSize: '0.9rem' }}>
-                      ⚡ Capacity: <span style={{ color: '#A1D1B1', fontWeight: '600' }}>{site.capacity}</span>
-                    </p>
-                    <p style={{ marginBottom: '4px', fontSize: '0.9rem' }}>
-                      📊 Status: <span style={{ color: '#22c55e', fontWeight: '600' }}>{site.status}</span>
-                    </p>
-                    
-                    <div style={{ 
-                      marginTop: '12px', 
-                      padding: '12px', 
-                      background: 'rgba(161, 209, 177, 0.1)', 
-                      borderRadius: '8px',
-                      fontSize: '0.85rem',
-                      lineHeight: '1.4'
-                    }}>
-                      <p style={{ 
-                        color: '#A1D1B1', 
-                        fontWeight: '600', 
-                        marginBottom: '8px',
-                        fontSize: '0.9rem'
-                      }}>
-                        📋 Description:
-                      </p>
-                      <p style={{ color: '#cbd5e1' }}>
-                        {site.description}
-                      </p>
-                    </div>
-                    
-                    {site.cost > 0 && (
-                      <div style={{ 
-                        marginTop: '8px', 
-                        padding: '10px', 
-                        background: 'rgba(161, 209, 177, 0.08)', 
-                        borderRadius: '6px',
-                        fontSize: '0.8rem',
-                        border: '1px solid rgba(161, 209, 177, 0.2)'
-                      }}>
-                        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '4px' }}>
-                          <span>💰 Cost Index:</span>
-                          <span style={{ 
-                            fontWeight: '600', 
-                            color: site.cost <= 70 ? '#22c55e' : site.cost <= 85 ? '#f59e0b' : '#ef4444' 
-                          }}>
-                            {site.cost}/100
-                          </span>
-                        </div>
-                        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                          <span>🌿 Carbon Index:</span>
-                          <span style={{ 
-                            fontWeight: '600', 
-                            color: site.carbon <= 10 ? '#22c55e' : site.carbon <= 20 ? '#f59e0b' : '#ef4444' 
-                          }}>
-                            {site.carbon}/100
-                          </span>
-                        </div>
-                        {site.analysis && (
-                          <p style={{ 
-                            fontSize: '0.75rem', 
-                            color: '#8b5cf6', 
-                            marginTop: '6px',
-                            fontWeight: '600',
-                            fontStyle: 'italic'
-                          }}>
-                            🎯 {site.analysis}
-                          </p>
-                        )}
-                      </div>
-                    )}
-                  </div>
+                  <p style={{ marginBottom: '4px', fontSize: '0.85rem' }}>
+                    📍 {site.city}
+                  </p>
+                  <p style={{ marginBottom: '4px', fontSize: '0.8rem', color: '#A1D1B1' }}>
+                    🌐 {site.coordinates}
+                  </p>
+                  <p style={{ fontSize: '0.8rem', color: '#cbd5e1' }}>
+                    {site.description}
+                  </p>
                 </div>
               </Popup>
             </Marker>

@@ -1222,7 +1222,7 @@ body {
   position: absolute;
   top: var(--space-lg);
   right: var(--space-lg);
-  width: 320px;
+  width: 280px;
   background: var(--bg-card);
   backdrop-filter: blur(20px);
   border: 1px solid var(--border-accent);
@@ -1236,12 +1236,12 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: var(--space-lg);
+  padding: var(--space-md);
   border-bottom: 1px solid var(--border-primary);
 }
 
 .selected-site-title {
-  font-size: 1.125rem;
+  font-size: 1rem;
   font-weight: 700;
   color: var(--mint-primary);
   margin: 0;
@@ -1251,7 +1251,7 @@ body {
   background: none;
   border: none;
   color: var(--text-secondary);
-  font-size: 1.25rem;
+  font-size: 1rem;
   cursor: pointer;
   padding: var(--space-xs);
   border-radius: var(--radius-sm);
@@ -1264,29 +1264,29 @@ body {
 }
 
 .selected-site-content {
-  padding: var(--space-lg);
+  padding: var(--space-md);
   display: flex;
   flex-direction: column;
-  gap: var(--space-md);
+  gap: var(--space-sm);
 }
 
 .selected-site-location {
-  font-size: 0.875rem;
+  font-size: 0.85rem;
   font-weight: 600;
   color: var(--text-primary);
 }
 
 .selected-site-coordinates {
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   color: var(--text-secondary);
   font-family: 'Inter', monospace;
 }
 
 .selected-site-description {
-  font-size: 0.875rem;
+  font-size: 0.8rem;
   color: var(--text-secondary);
   line-height: 1.5;
-  padding: var(--space-md);
+  padding: var(--space-sm);
   background: var(--bg-glass);
   border-radius: var(--radius-md);
   border: 1px solid var(--border-primary);
@@ -1296,7 +1296,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: var(--space-sm);
-  margin-top: var(--space-md);
+  margin-top: var(--space-sm);
 }
 
 .metric-item {
@@ -1307,7 +1307,7 @@ body {
   background: var(--bg-glass);
   border-radius: var(--radius-sm);
   border: 1px solid var(--border-primary);
-  font-size: 0.8rem;
+  font-size: 0.75rem;
 }
 
 .metric-value {
