@@ -33,7 +33,6 @@ const createCustomIcon = (color, symbol = "H₂", size = [40, 40]) => {
         font-family: 'Inter', sans-serif;
         text-shadow: 0 1px 2px rgba(0,0,0,0.5);
         cursor: pointer;
-        transition: transform 0.2s ease;
       ">
         ${symbol}
       </div>
