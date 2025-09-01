@@ -868,8 +868,6 @@ body {
 }
 
 /* Enhanced sorted sites styling */
-  margin-top: var(--space-lg);
-}
 
 .sorted-sites-list {
   display: flex;
@@ -877,7 +875,6 @@ body {
   gap: var(--space-md);
 }
 
-.sorted-site-item {
 .sorted-site-item {
   display: flex;
   align-items: center;
