@@ -103,85 +103,82 @@ ${carbonSorted.slice(0, 5).map((site, index) =>
   const currentView = mapViewStates[currentMapView]
 
   return (
-    <aside className="sidebar slide-in-right">
+    <aside className="sidebar">
       <div className="sidebar-header">
         <h2 className="sidebar-title">⚡ Control Panel</h2>
         <p className="sidebar-subtitle">Navigate and analyze India's green hydrogen infrastructure</p>
       </div>
 
-      {/* Enhanced Map Views Section */}
-      <div className="card">
-        <h3 className="card-title">🗺️ Map Views</h3>
-        <div className="card-content">
-          <div className="map-view-toggle">
-            <button
-              className="map-view-button"
-              onClick={handleMapViewToggle}
-            >
-              <div className="map-view-icon">
-                {currentView.icon}
+      {/* Map Views Section */}
+      <div className="sidebar-section">
+        <h3 className="section-title">🗺️ Map Views</h3>
+        <div className="map-view-container">
+          <div className="map-view-current">
+            <div className="current-view-display">
+              <div className="current-view-icon">{currentView.icon}</div>
+              <div className="current-view-info">
+                <div className="current-view-label">{currentView.label}</div>
+                <div className="current-view-description">{currentView.description}</div>
+                <div className="current-view-count">{currentView.data.length} locations</div>
               </div>
-              <div className="map-view-content">
-                <span className="map-view-label">{currentView.label}</span>
-                <span className="map-view-description">{currentView.description}</span>
-                <span className="map-view-count">{currentView.data.length} locations</span>
-              </div>
-              <div className="map-view-arrow">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M9 18l6-6-6-6"/>
-                </svg>
-              </div>
-            </button>
-            
-            <div className="map-view-indicator">
-              <div className="view-dots">
-                {mapViewStates.map((_, index) => (
-                  <div 
-                    key={index}
-                    className={`view-dot ${index === currentMapView ? 'active' : ''}`}
-                  />
-                ))}
-              </div>
-              <span className="view-counter">{currentMapView + 1} of {mapViewStates.length}</span>
             </div>
+            <button className="view-toggle-btn" onClick={handleMapViewToggle}>
+              Switch View
+            </button>
+          </div>
+          
+          <div className="view-indicators">
+            {mapViewStates.map((view, index) => (
+              <div 
+                key={view.id}
+                className={`view-indicator ${index === currentMapView ? 'active' : ''}`}
+                onClick={() => {
+                  setCurrentMapView(index)
+                  setView(view.id)
+                }}
+              >
+                <span className="indicator-icon">{view.icon}</span>
+                <span className="indicator-label">{view.label}</span>
+              </div>
+            ))}
           </div>
         </div>
       </div>
 
-      {/* Enhanced Analysis Section */}
-      <div className="card">
-        <h3 className="card-title">🧮 Analysis</h3>
-        <div className="card-content card-content-gap">
+      {/* Analysis Section */}
+      <div className="sidebar-section">
+        <h3 className="section-title">🧮 Analysis</h3>
+        <div className="analysis-container">
           <button 
-            className="button button-default button-full hover-lift"
+            className="analysis-btn"
             onClick={generateAnalysis}
           >
             🚀 Run Analysis
           </button>
 
           {sortedSites.length > 0 && (
-            <div className="sorted-sites-section">
-              <h4 className="sorted-sites-title">
-                📊 Ranked {currentView.label} (Best Cost Efficiency First)
+            <div className="analysis-results">
+              <h4 className="results-title">
+                📊 Top Ranked Sites (Cost Efficiency)
               </h4>
-              <div className="sorted-sites-list">
-                {sortedSites.slice(0, 6).map((site, index) => (
+              <div className="sites-list">
+                {sortedSites.slice(0, 5).map((site, index) => (
                   <div 
                     key={site.id} 
-                    className="sorted-site-item hover-lift"
+                    className="site-item"
                     onClick={() => onSiteSelect && onSiteSelect(site)}
                   >
                     <div className="site-rank">#{index + 1}</div>
-                    <div className="site-info">
+                    <div className="site-details">
                       <div className="site-name">{site.name}</div>
                       <div className="site-location">{site.city}</div>
                       <div className="site-metrics">
-                        <span className="metric">💰 {site.cost}/100</span>
-                        <span className="metric">🌿 {site.carbon}/100</span>
+                        <span className="metric cost">💰 {site.cost}/100</span>
+                        <span className="metric carbon">🌿 {site.carbon}/100</span>
                       </div>
                     </div>
-                    <div className="efficiency-badge">
-                      {site.cost + site.carbon}
+                    <div className="efficiency-score">
+                      {(200 - site.cost - site.carbon).toFixed(0)}
                     </div>
                   </div>
                 ))}
@@ -195,27 +192,27 @@ ${carbonSorted.slice(0, 5).map((site, index) =>
       {showAnalysisPopup && (
         <div className="analysis-popup-overlay">
           <div className="analysis-popup">
-            <div className="analysis-popup-header">
-              <div className="analysis-popup-icon">✅</div>
-              <h3 className="analysis-popup-title">Analysis Complete!</h3>
+            <div className="popup-header">
+              <div className="popup-icon">✅</div>
+              <h3 className="popup-title">Analysis Complete!</h3>
             </div>
-            <div className="analysis-popup-content">
-              <p className="analysis-popup-text">
-                Analysis is done! Click "Export Report" in the header to check the detailed results including cost analysis and carbon emission rankings from lowest to highest.
+            <div className="popup-content">
+              <p className="popup-text">
+                Analysis completed successfully! Check the header's "Export Report" button for detailed PDF results including comprehensive data for all site types.
               </p>
-              <div className="analysis-popup-stats">
+              <div className="popup-stats">
                 <div className="popup-stat">
-                  <span className="popup-stat-value">{getCurrentViewData().length}</span>
-                  <span className="popup-stat-label">Sites Analyzed</span>
+                  <span className="stat-value">{getCurrentViewData().length}</span>
+                  <span className="stat-label">Sites Analyzed</span>
                 </div>
                 <div className="popup-stat">
-                  <span className="popup-stat-value">{currentView.label}</span>
-                  <span className="popup-stat-label">Analysis Type</span>
+                  <span className="stat-value">{currentView.label}</span>
+                  <span className="stat-label">Analysis Type</span>
                 </div>
               </div>
             </div>
             <button 
-              className="analysis-popup-close"
+              className="popup-close-btn"
               onClick={() => setShowAnalysisPopup(false)}
             >
               Got it!
